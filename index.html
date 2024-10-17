@@ -1,0 +1,51 @@
+<html lang="uk">
+<body>
+    <h2>Введіть дані про співробітників</h2>
+    <form id="employeeForm">
+        <div>
+            <label>Прізвище співробітника 1: <input type="text" id="surname1"></label>
+            <label>Дата прийому на роботу: <input type="date" id="hireDate1"></label>
+        </div>
+        <div>
+            <label>Прізвище співробітника 2: <input type="text" id="surname2"></label>
+            <label>Дата прийому на роботу: <input type="date" id="hireDate2"></label>
+        </div>
+        <div>
+            <label>Прізвище співробітника 3: <input type="text" id="surname3"></label>
+            <label>Дата прийому на роботу: <input type="date" id="hireDate3"></label>
+        </div>
+        <div>
+            <label>Прізвище співробітника 4: <input type="text" id="surname4"></label>
+            <label>Дата прийому на роботу: <input type="date" id="hireDate4"></label>
+        </div>
+        <div>
+            <label>Прізвище співробітника 5: <input type="text" id="surname5"></label>
+            <label>Дата прийому на роботу: <input type="date" id="hireDate5"></label>
+        </div>
+        <button type="button" onclick="calculateAverageExperience()">Розрахувати середній стаж</button>
+    </form>
+
+    <h3>Середній стаж роботи: <span id="averageExperience">-</span> років</h3>
+
+    <script>
+        function calculateAverageExperience() {
+            const currentDate = new Date();
+            let totalYears = 0;
+            let count = 0;
+
+            for (let i = 1; i <= 5; i++) {
+                const hireDate = document.getElementById(`hireDate${i}`).value;
+                if (hireDate) {
+                    const startDate = new Date(hireDate);
+                    const yearsOfExperience = currentDate.getFullYear() - startDate.getFullYear();
+                    totalYears += yearsOfExperience;
+                    count++;
+                }
+            }
+
+            const averageExperience = count > 0 ? Math.floor(totalYears / count) : 0;
+            document.getElementById('averageExperience').textContent = averageExperience;
+        }
+    </script>
+</body>
+</html>
